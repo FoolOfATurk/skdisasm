@@ -286,6 +286,26 @@ offsetBankTableEntry macro ptr
 	dc.ATTRIBUTE k68z80Pointer(ptr-soundBankStart)
     endm
 
+spinWaitTstCmp macro addr, cond
+-
+	tst.ATTRIBUTE addr
+	!cond.s -
+	endm
+
+spinWaitTst macro addr
+	spinWaitTstCmp.ATTRIBUTE addr, bne
+	endm
+
+spinWaitCmp macro check, x, y, cond
+-
+	!check x, y
+	!cond.s	-
+	endm
+
+spinWait macro check, x, y
+	spinWaitCmp check, x, y, bne
+	endm
+
 ; Special BINCLUDE wrapper function
 DACBINCLUDE macro file,{INTLABEL}
 __LABEL__ label *

@@ -15,6 +15,28 @@ local improved_sound_driver_compression = false
 
 local common = require "build_tools.lua.common"
 
+local assemble_result = common.assemble_file("SubCPU/subcpu.asm", "SubCPU/subcpu.bin", "", "", false, repository)
+
+if assemble_result == "crash" then
+	print "\n\z
+		**********************************************************************\n\z
+		*                                                                    *\n\z
+		*         The assembler crashed. See above for more details.         *\n\z
+		*                                                                    *\n\z
+		**********************************************************************\n\z"
+
+	os.exit(false)
+elseif assemble_result == "error" then
+	print "\n\z
+		**********************************************************************\n\z
+		*                                                                    *\n\z
+		*        There were build errors. See s2.log for more details.       *\n\z
+		*                                                                    *\n\z
+		**********************************************************************\n\z"
+
+	os.exit(false)
+end
+
 local compression = improved_sound_driver_compression and "kosinski-optimised" or "kosinski"
 local message, abort = common.build_rom("sonic3k", "sonic3k", "-D Sonic3_Complete=1", "-p=FF -z=0," .. compression .. ",Size_of_Snd_driver_guess,before -z=1300," .. compression .. ",Size_of_Snd_driver2_guess,before", false, "https://github.com/sonicretro/skdisasm")
 
