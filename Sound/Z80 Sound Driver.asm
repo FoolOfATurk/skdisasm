@@ -613,28 +613,33 @@ zWriteFMII:
 ; ===========================================================================
 ; DAC BANKS
 ; ===========================================================================
+zmake68kBanks macro
+		irp op,ALLARGS
+			db zmake68kBank(op)
+		endm
+	endm
 ; Note: this table has a dummy first entry for the case when there is no DAC
 ; sample being played -- the code still results in a valid bank switch, and
 ; does not need to worry about special cases.
 DAC_Banks:
-		db		zmake68kBank(DacBank1)               ,zmake68kBank(DAC_81_Data)            ,zmake68kBank(DAC_82_83_84_85_Data)   ,zmake68kBank(DAC_82_83_84_85_Data)
-		db		zmake68kBank(DAC_82_83_84_85_Data)   ,zmake68kBank(DAC_82_83_84_85_Data)   ,zmake68kBank(DAC_86_Data)            ,zmake68kBank(DAC_87_Data)
-		db		zmake68kBank(DAC_88_Data)            ,zmake68kBank(DAC_89_Data)            ,zmake68kBank(DAC_8A_8B_Data)         ,zmake68kBank(DAC_8A_8B_Data)
-		db		zmake68kBank(DAC_8C_Data)            ,zmake68kBank(DAC_8D_8E_Data)         ,zmake68kBank(DAC_8D_8E_Data)         ,zmake68kBank(DAC_8F_Data)
-		db		zmake68kBank(DAC_90_91_92_93_Data)   ,zmake68kBank(DAC_90_91_92_93_Data)   ,zmake68kBank(DAC_90_91_92_93_Data)   ,zmake68kBank(DAC_90_91_92_93_Data)
-		db		zmake68kBank(DAC_94_95_96_97_Data)   ,zmake68kBank(DAC_94_95_96_97_Data)   ,zmake68kBank(DAC_94_95_96_97_Data)   ,zmake68kBank(DAC_94_95_96_97_Data)
-		db		zmake68kBank(DAC_98_99_9A_Data)      ,zmake68kBank(DAC_98_99_9A_Data)      ,zmake68kBank(DAC_98_99_9A_Data)      ,zmake68kBank(DAC_9B_Data)
-		db		zmake68kBank(DAC_9C_Data)            ,zmake68kBank(DAC_9D_Data)            ,zmake68kBank(DAC_9E_Data)            ,zmake68kBank(DAC_9F_Data)
-		db		zmake68kBank(DAC_A0_Data)            ,zmake68kBank(DAC_A1_Data)            ,zmake68kBank(DAC_A2_Data)            ,zmake68kBank(DAC_A3_Data)
-		db		zmake68kBank(DAC_A4_Data)            ,zmake68kBank(DAC_A5_Data)            ,zmake68kBank(DAC_A6_Data)            ,zmake68kBank(DAC_A7_Data)
-		db		zmake68kBank(DAC_A8_Data)            ,zmake68kBank(DAC_A9_Data)            ,zmake68kBank(DAC_AA_Data)            ,zmake68kBank(DAC_AB_Data)
-		db		zmake68kBank(DAC_AC_Data)            ,zmake68kBank(DAC_AD_AE_Data)         ,zmake68kBank(DAC_AD_AE_Data)         ,zmake68kBank(DAC_AF_B0_Data)
-		db		zmake68kBank(DAC_AF_B0_Data)         ,zmake68kBank(DAC_B1_Data)            ,zmake68kBank(DAC_B2_B3_Data)         ,zmake68kBank(DAC_B2_B3_Data)
-		db		zmake68kBank(DAC_B4_C1_C2_C3_C4_Data),zmake68kBank(DAC_B5_Data)            ,zmake68kBank(DAC_B6_Data)            ,zmake68kBank(DAC_B7_Data)
-		db		zmake68kBank(DAC_B8_B9_Data)         ,zmake68kBank(DAC_B8_B9_Data)         ,zmake68kBank(DAC_BA_Data)            ,zmake68kBank(DAC_BB_Data)
-		db		zmake68kBank(DAC_BC_Data)            ,zmake68kBank(DAC_BD_Data)            ,zmake68kBank(DAC_BE_Data)            ,zmake68kBank(DAC_BF_Data)
-		db		zmake68kBank(DAC_C0_Data)            ,zmake68kBank(DAC_B4_C1_C2_C3_C4_Data),zmake68kBank(DAC_B4_C1_C2_C3_C4_Data),zmake68kBank(DAC_B4_C1_C2_C3_C4_Data)
-		db		zmake68kBank(DAC_B4_C1_C2_C3_C4_Data)
+		zmake68kBanks DacBank1               , DAC_81_Data            , DAC_82_83_84_85_Data   , DAC_82_83_84_85_Data
+		zmake68kBanks DAC_82_83_84_85_Data   , DAC_82_83_84_85_Data   , DAC_86_Data            , DAC_87_Data
+		zmake68kBanks DAC_88_Data            , DAC_89_Data            , DAC_8A_8B_Data         , DAC_8A_8B_Data
+		zmake68kBanks DAC_8C_Data            , DAC_8D_8E_Data         , DAC_8D_8E_Data         , DAC_8F_Data
+		zmake68kBanks DAC_90_91_92_93_Data   , DAC_90_91_92_93_Data   , DAC_90_91_92_93_Data   , DAC_90_91_92_93_Data
+		zmake68kBanks DAC_94_95_96_97_Data   , DAC_94_95_96_97_Data   , DAC_94_95_96_97_Data   , DAC_94_95_96_97_Data
+		zmake68kBanks DAC_98_99_9A_Data      , DAC_98_99_9A_Data      , DAC_98_99_9A_Data      , DAC_9B_Data
+		zmake68kBanks DAC_9C_Data            , DAC_9D_Data            , DAC_9E_Data            , DAC_9F_Data
+		zmake68kBanks DAC_A0_Data            , DAC_A1_Data            , DAC_A2_Data            , DAC_A3_Data
+		zmake68kBanks DAC_A4_Data            , DAC_A5_Data            , DAC_A6_Data            , DAC_A7_Data
+		zmake68kBanks DAC_A8_Data            , DAC_A9_Data            , DAC_AA_Data            , DAC_AB_Data
+		zmake68kBanks DAC_AC_Data            , DAC_AD_AE_Data         , DAC_AD_AE_Data         , DAC_AF_B0_Data
+		zmake68kBanks DAC_AF_B0_Data         , DAC_B1_Data            , DAC_B2_B3_Data         , DAC_B2_B3_Data
+		zmake68kBanks DAC_B4_C1_C2_C3_C4_Data, DAC_B5_Data            , DAC_B6_Data            , DAC_B7_Data
+		zmake68kBanks DAC_B8_B9_Data         , DAC_B8_B9_Data         , DAC_BA_Data            , DAC_BB_Data
+		zmake68kBanks DAC_BC_Data            , DAC_BD_Data            , DAC_BE_Data            , DAC_BF_Data
+		zmake68kBanks DAC_C0_Data            , DAC_B4_C1_C2_C3_C4_Data, DAC_B4_C1_C2_C3_C4_Data, DAC_B4_C1_C2_C3_C4_Data
+		zmake68kBanks DAC_B4_C1_C2_C3_C4_Data
 
 ; =============== S U B	R O U T	I N E =======================================
 ;
@@ -2771,23 +2776,45 @@ zFadeInToPrevious:
 		ret
 ; End of function zFadeInToPrevious
 ; ---------------------------------------------------------------------------
+zMakePSGFrequency function frequency,min(3FFh,roundFloatToInteger(PSG_Sample_Rate/(frequency*2)))
+zMakePSGFrequencies macro
+		irp op,ALLARGS
+			dw zMakePSGFrequency(op)
+		endm
+	endm
+
 ;loc_AA5
 zPSGFrequencies:
+		; 7 octaves, each one begins with C and ends with B.
 		; This table differs from the one in Sonic 1 and 2's drivers by
 		; having an extra octave at the start and two extra notes at
-		; the end, allowing it to span notes c-0 to b-6.
-		dw 3FFh,3FFh,3FFh,3FFh,3FFh,3FFh,3FFh,3FFh,3FFh,3F7h,3BEh,388h
-		dw 356h,326h,2F9h,2CEh,2A5h,280h,25Ch,23Ah,21Ah,1FBh,1DFh,1C4h
-		dw 1ABh,193h,17Dh,167h,153h,140h,12Eh,11Dh,10Dh,0FEh,0EFh,0E2h
-		dw 0D6h,0C9h,0BEh,0B4h,0A9h,0A0h,097h,08Fh,087h,07Fh,078h,071h
-		dw 06Bh,065h,05Fh,05Ah,055h,050h,04Bh,047h,043h,040h,03Ch,039h
-		dw 036h,033h,030h,02Dh,02Bh,028h,026h,024h,022h,020h,01Fh,01Dh
-		dw 01Bh,01Ah,018h,017h,016h,015h,013h,012h,011h,010h,000h,000h
+		; the end, allowing it to span 7 octaves.
+		; The first octave contains duplicate frequencies due to the
+		; PSG's frequency counter being limited to 3FFh.
+		; The last octave's final two notes are set to the PSG's maximum
+		; frequency. These are typically used by the noise channel to
+		; create a sound that is similar to a hi-hat.
+		zMakePSGFrequencies  109.34,    109.34,    109.34,    109.34,    109.34,    109.34,    109.34,    109.34,    109.34,    110.20,    116.76,    123.73
+		zMakePSGFrequencies  130.98,    138.78,    146.99,    155.79,    165.22,    174.78,    185.19,    196.24,    207.91,    220.63,    233.52,    247.47
+		zMakePSGFrequencies  261.96,    277.56,    293.59,    311.58,    329.97,    349.56,    370.39,    392.49,    415.83,    440.39,    468.03,    494.95
+		zMakePSGFrequencies  522.71,    556.51,    588.73,    621.44,    661.89,    699.12,    740.79,    782.24,    828.59,    880.79,    932.17,    989.91
+		zMakePSGFrequencies 1045.42,   1107.52,   1177.47,   1242.89,   1316.00,   1398.25,   1491.47,   1575.50,   1669.55,   1747.82,   1864.34,   1962.46
+		zMakePSGFrequencies 2071.49,   2193.34,   2330.42,   2485.78,   2601.40,   2796.51,   2943.69,   3107.23,   3290.01,   3495.64,   3608.40,   3857.25
+		zMakePSGFrequencies 4142.98,   4302.32,   4660.85,   4863.50,   5084.56,   5326.69,   5887.39,   6214.47,   6580.02,   6991.28, 223721.56, 223721.56
+; ---------------------------------------------------------------------------
+zMakeFMFrequency function frequency,roundFloatToInteger(frequency*1024*1024*2/FM_Sample_Rate)
+zMakeFMFrequencies macro
+		irp op,ALLARGS
+			dw zMakeFMFrequency(op)
+		endm
+	endm
+
 ;loc_B4D
 zFMFrequencies:
 		; This table spans only a single octave, as the octave frequency
 		; is calculated at run-time unlike in Sonic 1 and 2's drivers.
-		dw 284h,2ABh,2D3h,2FEh,32Dh,35Ch,38Fh,3C5h,3FFh,43Ch,47Ch,4C0h
+		; The first frequency is C, the last frequency is B.
+		zMakeFMFrequencies 16.35, 17.34, 18.36, 19.45, 20.64, 21.84, 23.13, 24.51, 25.98, 27.53, 29.15, 30.88
 ; ---------------------------------------------------------------------------
 ; ===========================================================================
 ; MUSIC BANKS
@@ -2798,30 +2825,35 @@ zmakeSongBank function addr,zmake68kBank(addr)&0Fh ; See bankswitchToMusicS3
 	else
 zmakeSongBank function addr,zmake68kBank(addr)
 	endif
+zmakeSongBanks macro
+		irp op,ALLARGS
+			db zmakeSongBank(op)
+		endm
+	endm
 
 z80_MusicBanks:
-		db  zmakeSongBank(Snd_AIZ1),zmakeSongBank(Snd_AIZ2),zmakeSongBank(Snd_HCZ1),zmakeSongBank(Snd_HCZ2)
-		db  zmakeSongBank(Snd_MGZ1),zmakeSongBank(Snd_MGZ2),zmakeSongBank(Snd_CNZ1),zmakeSongBank(Snd_CNZ2)
-		db  zmakeSongBank(Snd_FBZ1),zmakeSongBank(Snd_FBZ2),zmakeSongBank(Snd_ICZ1),zmakeSongBank(Snd_ICZ2)
-		db  zmakeSongBank(Snd_LBZ1),zmakeSongBank(Snd_LBZ2),zmakeSongBank(Snd_MHZ1),zmakeSongBank(Snd_MHZ2)
+		zmakeSongBanks Snd_AIZ1, Snd_AIZ2, Snd_HCZ1, Snd_HCZ2
+		zmakeSongBanks Snd_MGZ1, Snd_MGZ2, Snd_CNZ1, Snd_CNZ2
+		zmakeSongBanks Snd_FBZ1, Snd_FBZ2, Snd_ICZ1, Snd_ICZ2
+		zmakeSongBanks Snd_LBZ1, Snd_LBZ2, Snd_MHZ1, Snd_MHZ2
 
-		db  zmakeSongBank(Snd_SOZ1),zmakeSongBank(Snd_SOZ2),zmakeSongBank(Snd_LRZ1),zmakeSongBank(Snd_LRZ2)
-		db  zmakeSongBank(Snd_SSZ),zmakeSongBank(Snd_DEZ1),zmakeSongBank(Snd_DEZ2),zmakeSongBank(Snd_Minib_SK)
-		db  zmakeSongBank(Snd_Boss),zmakeSongBank(Snd_DDZ),zmakeSongBank(Snd_PachBonus),zmakeSongBank(Snd_SpecialS)
-		db  zmakeSongBank(Snd_SlotBonus),zmakeSongBank(Snd_GumBonus),zmakeSongBank(Snd_Knux),zmakeSongBank(Snd_ALZ)
+		zmakeSongBanks Snd_SOZ1, Snd_SOZ2, Snd_LRZ1, Snd_LRZ2
+		zmakeSongBanks Snd_SSZ, Snd_DEZ1, Snd_DEZ2, Snd_Minib_SK
+		zmakeSongBanks Snd_Boss, Snd_DDZ, Snd_PachBonus, Snd_SpecialS
+		zmakeSongBanks Snd_SlotBonus, Snd_GumBonus, Snd_Knux, Snd_ALZ
 
-		db  zmakeSongBank(Snd_BPZ),zmakeSongBank(Snd_DPZ),zmakeSongBank(Snd_CGZ),zmakeSongBank(Snd_EMZ)
-		db  zmakeSongBank(Snd_Title),zmakeSongBank(Snd_S3Credits),zmakeSongBank(Snd_GameOver),zmakeSongBank(Snd_Continue)
-		db  zmakeSongBank(Snd_Results),zmakeSongBank(Snd_1UP),zmakeSongBank(Snd_Emerald),zmakeSongBank(Snd_Invic)
-		db  zmakeSongBank(Snd_2PMenu)
+		zmakeSongBanks Snd_BPZ, Snd_DPZ, Snd_CGZ, Snd_EMZ
+		zmakeSongBanks Snd_Title, Snd_S3Credits, Snd_GameOver, Snd_Continue
+		zmakeSongBanks Snd_Results, Snd_1UP, Snd_Emerald, Snd_Invic
+		zmakeSongBanks Snd_2PMenu
 	if SonicDriverVer==3
-		db  zmakeSongBank(Snd_Minib)
+		zmakeSongBanks Snd_Minib
 	else
-		db  zmakeSongBank(Snd_Minib_SK)
+		zmakeSongBanks Snd_Minib_SK
 	endif
-		db  zmakeSongBank(Snd_Menu),zmakeSongBank(Snd_FinalBoss),zmakeSongBank(Snd_Drown),zmakeSongBank(Snd_PresSega)
+		zmakeSongBanks Snd_Menu, Snd_FinalBoss, Snd_Drown, Snd_PresSega
 	if SonicDriverVer<>3
-		db  zmakeSongBank(Snd_SKCredits)
+		zmakeSongBanks Snd_SKCredits
 	endif
 
 ; =============== S U B	R O U T	I N E =======================================
@@ -4446,13 +4478,13 @@ ModEnv_07:	db    1,   2,   3,   4,   3,   2,   1,   0,  -1,  -2,  -3,  -4,  -3, 
 ; ===========================================================================
 ;z80_PSGTonePointers
 z80_VolEnvPointers:
-		dw		VolEnv_00,VolEnv_01,VolEnv_02,VolEnv_03,VolEnv_04,VolEnv_05
-		dw		VolEnv_06,VolEnv_07,VolEnv_08,VolEnv_09,VolEnv_0A,VolEnv_0B
-		dw		VolEnv_0C,VolEnv_0D,VolEnv_0E,VolEnv_0F,VolEnv_10,VolEnv_11
-		dw		VolEnv_12,VolEnv_13,VolEnv_14,VolEnv_15,VolEnv_16,VolEnv_17
-		dw		VolEnv_18,VolEnv_19,VolEnv_1A,VolEnv_1B,VolEnv_1C,VolEnv_1D
-		dw		VolEnv_1E,VolEnv_1F,VolEnv_20,VolEnv_21,VolEnv_22,VolEnv_23
-		dw		VolEnv_24,VolEnv_25,VolEnv_26
+		dw	VolEnv_00,VolEnv_01,VolEnv_02,VolEnv_03,VolEnv_04,VolEnv_05
+		dw	VolEnv_06,VolEnv_07,VolEnv_08,VolEnv_09,VolEnv_0A,VolEnv_0B
+		dw	VolEnv_0C,VolEnv_0D,VolEnv_0E,VolEnv_0F,VolEnv_10,VolEnv_11
+		dw	VolEnv_12,VolEnv_13,VolEnv_14,VolEnv_15,VolEnv_16,VolEnv_17
+		dw	VolEnv_18,VolEnv_19,VolEnv_1A,VolEnv_1B,VolEnv_1C,VolEnv_1D
+		dw	VolEnv_1E,VolEnv_1F,VolEnv_20,VolEnv_21,VolEnv_22,VolEnv_23
+		dw	VolEnv_24,VolEnv_25,VolEnv_26
 
 VolEnv_00:	db    2, 83h
 VolEnv_01:	db    0,   2,   4,   6,   8, 10h, 83h
@@ -4530,29 +4562,35 @@ VolEnv_26:	db    0,   2,   2,   2,   3,   3,   3,   4,   4,   4,   5,   5, 83h
 ; Music Pointers
 ; ===========================================================================
 
+zmake68kPtrs macro
+		irp op,ALLARGS
+			dw zmake68kPtr(op)
+		endm
+	endm
+
 z80_MusicPointers:
-		dw	zmake68kPtr(Snd_AIZ1),zmake68kPtr(Snd_AIZ2),zmake68kPtr(Snd_HCZ1),zmake68kPtr(Snd_HCZ2)
-		dw	zmake68kPtr(Snd_MGZ1),zmake68kPtr(Snd_MGZ2),zmake68kPtr(Snd_CNZ1),zmake68kPtr(Snd_CNZ2)
-		dw	zmake68kPtr(Snd_FBZ1),zmake68kPtr(Snd_FBZ2),zmake68kPtr(Snd_ICZ1),zmake68kPtr(Snd_ICZ2)
-		dw	zmake68kPtr(Snd_LBZ1),zmake68kPtr(Snd_LBZ2),zmake68kPtr(Snd_MHZ1),zmake68kPtr(Snd_MHZ2)
+		zmake68kPtrs Snd_AIZ1, Snd_AIZ2, Snd_HCZ1, Snd_HCZ2
+		zmake68kPtrs Snd_MGZ1, Snd_MGZ2, Snd_CNZ1, Snd_CNZ2
+		zmake68kPtrs Snd_FBZ1, Snd_FBZ2, Snd_ICZ1, Snd_ICZ2
+		zmake68kPtrs Snd_LBZ1, Snd_LBZ2, Snd_MHZ1, Snd_MHZ2
 
-		dw	zmake68kPtr(Snd_SOZ1),zmake68kPtr(Snd_SOZ2),zmake68kPtr(Snd_LRZ1),zmake68kPtr(Snd_LRZ2)
-		dw	zmake68kPtr(Snd_SSZ),zmake68kPtr(Snd_DEZ1),zmake68kPtr(Snd_DEZ2),zmake68kPtr(Snd_Minib_SK)
-		dw	zmake68kPtr(Snd_Boss),zmake68kPtr(Snd_DDZ),zmake68kPtr(Snd_PachBonus),zmake68kPtr(Snd_SpecialS)
-		dw	zmake68kPtr(Snd_SlotBonus),zmake68kPtr(Snd_GumBonus),zmake68kPtr(Snd_Knux),zmake68kPtr(Snd_ALZ)
+		zmake68kPtrs Snd_SOZ1, Snd_SOZ2, Snd_LRZ1, Snd_LRZ2
+		zmake68kPtrs Snd_SSZ, Snd_DEZ1, Snd_DEZ2, Snd_Minib_SK
+		zmake68kPtrs Snd_Boss, Snd_DDZ, Snd_PachBonus, Snd_SpecialS
+		zmake68kPtrs Snd_SlotBonus, Snd_GumBonus, Snd_Knux, Snd_ALZ
 
-		dw	zmake68kPtr(Snd_BPZ),zmake68kPtr(Snd_DPZ),zmake68kPtr(Snd_CGZ),zmake68kPtr(Snd_EMZ)
-		dw	zmake68kPtr(Snd_Title),zmake68kPtr(Snd_S3Credits),zmake68kPtr(Snd_GameOver),zmake68kPtr(Snd_Continue)
-		dw	zmake68kPtr(Snd_Results),zmake68kPtr(Snd_1UP),zmake68kPtr(Snd_Emerald),zmake68kPtr(Snd_Invic)
-		dw	zmake68kPtr(Snd_2PMenu)
+		zmake68kPtrs Snd_BPZ, Snd_DPZ, Snd_CGZ, Snd_EMZ
+		zmake68kPtrs Snd_Title, Snd_S3Credits, Snd_GameOver, Snd_Continue
+		zmake68kPtrs Snd_Results, Snd_1UP, Snd_Emerald, Snd_Invic
+		zmake68kPtrs Snd_2PMenu
 	if SonicDriverVer==3
-		dw	zmake68kPtr(Snd_Minib)
+		zmake68kPtrs Snd_Minib
 	else
-		dw	zmake68kPtr(Snd_Minib_SK)
+		zmake68kPtrs Snd_Minib_SK
 	endif
-		dw	zmake68kPtr(Snd_Menu),zmake68kPtr(Snd_FinalBoss),zmake68kPtr(Snd_Drown),zmake68kPtr(Snd_PresSega)
+		zmake68kPtrs Snd_Menu, Snd_FinalBoss, Snd_Drown, Snd_PresSega
 	if SonicDriverVer<>3
-		dw	zmake68kPtr(Snd_SKCredits)
+		zmake68kPtrs Snd_SKCredits
 	endif
 ; ---------------------------------------------------------------------------
 ; ===========================================================================
@@ -4560,60 +4598,60 @@ z80_MusicPointers:
 ; ===========================================================================
 
 z80_SFXPointers:
-		dw	zmake68kPtr(Sound_33),zmake68kPtr(Sound_34),zmake68kPtr(Sound_35),zmake68kPtr(Sound_36)
-		dw	zmake68kPtr(Sound_37),zmake68kPtr(Sound_38),zmake68kPtr(Sound_39),zmake68kPtr(Sound_3A)
-		dw	zmake68kPtr(Sound_3B),zmake68kPtr(Sound_3C),zmake68kPtr(Sound_3D),zmake68kPtr(Sound_3E)
-		dw	zmake68kPtr(Sound_3F)
+		zmake68kPtrs  Sound_33, Sound_34, Sound_35, Sound_36
+		zmake68kPtrs  Sound_37, Sound_38, Sound_39, Sound_3A
+		zmake68kPtrs  Sound_3B, Sound_3C, Sound_3D, Sound_3E
+		zmake68kPtrs  Sound_3F
 
-		dw	zmake68kPtr(Sound_40),zmake68kPtr(Sound_41),zmake68kPtr(Sound_42),zmake68kPtr(Sound_43)
-		dw	zmake68kPtr(Sound_44),zmake68kPtr(Sound_45),zmake68kPtr(Sound_46),zmake68kPtr(Sound_47)
-		dw	zmake68kPtr(Sound_48),zmake68kPtr(Sound_49),zmake68kPtr(Sound_4A),zmake68kPtr(Sound_4B)
-		dw	zmake68kPtr(Sound_4C),zmake68kPtr(Sound_4D),zmake68kPtr(Sound_4E),zmake68kPtr(Sound_4F)
+		zmake68kPtrs  Sound_40, Sound_41, Sound_42, Sound_43
+		zmake68kPtrs  Sound_44, Sound_45, Sound_46, Sound_47
+		zmake68kPtrs  Sound_48, Sound_49, Sound_4A, Sound_4B
+		zmake68kPtrs  Sound_4C, Sound_4D, Sound_4E, Sound_4F
 
-		dw	zmake68kPtr(Sound_50),zmake68kPtr(Sound_51),zmake68kPtr(Sound_52),zmake68kPtr(Sound_53)
-		dw	zmake68kPtr(Sound_54),zmake68kPtr(Sound_55),zmake68kPtr(Sound_56),zmake68kPtr(Sound_57)
-		dw	zmake68kPtr(Sound_58),zmake68kPtr(Sound_59),zmake68kPtr(Sound_5A),zmake68kPtr(Sound_5B)
-		dw	zmake68kPtr(Sound_5C),zmake68kPtr(Sound_5D),zmake68kPtr(Sound_5E),zmake68kPtr(Sound_5F)
+		zmake68kPtrs  Sound_50, Sound_51, Sound_52, Sound_53
+		zmake68kPtrs  Sound_54, Sound_55, Sound_56, Sound_57
+		zmake68kPtrs  Sound_58, Sound_59, Sound_5A, Sound_5B
+		zmake68kPtrs  Sound_5C, Sound_5D, Sound_5E, Sound_5F
 
-		dw	zmake68kPtr(Sound_60),zmake68kPtr(Sound_61),zmake68kPtr(Sound_62),zmake68kPtr(Sound_63)
-		dw	zmake68kPtr(Sound_64),zmake68kPtr(Sound_65),zmake68kPtr(Sound_66),zmake68kPtr(Sound_67)
-		dw	zmake68kPtr(Sound_68),zmake68kPtr(Sound_69),zmake68kPtr(Sound_6A),zmake68kPtr(Sound_6B)
-		dw	zmake68kPtr(Sound_6C),zmake68kPtr(Sound_6D),zmake68kPtr(Sound_6E),zmake68kPtr(Sound_6F)
+		zmake68kPtrs  Sound_60, Sound_61, Sound_62, Sound_63
+		zmake68kPtrs  Sound_64, Sound_65, Sound_66, Sound_67
+		zmake68kPtrs  Sound_68, Sound_69, Sound_6A, Sound_6B
+		zmake68kPtrs  Sound_6C, Sound_6D, Sound_6E, Sound_6F
 
-		dw	zmake68kPtr(Sound_70),zmake68kPtr(Sound_71),zmake68kPtr(Sound_72),zmake68kPtr(Sound_73)
-		dw	zmake68kPtr(Sound_74),zmake68kPtr(Sound_75),zmake68kPtr(Sound_76),zmake68kPtr(Sound_77)
-		dw	zmake68kPtr(Sound_78),zmake68kPtr(Sound_79),zmake68kPtr(Sound_7A),zmake68kPtr(Sound_7B)
-		dw	zmake68kPtr(Sound_7C),zmake68kPtr(Sound_7D),zmake68kPtr(Sound_7E),zmake68kPtr(Sound_7F)
+		zmake68kPtrs  Sound_70, Sound_71, Sound_72, Sound_73
+		zmake68kPtrs  Sound_74, Sound_75, Sound_76, Sound_77
+		zmake68kPtrs  Sound_78, Sound_79, Sound_7A, Sound_7B
+		zmake68kPtrs  Sound_7C, Sound_7D, Sound_7E, Sound_7F
 
-		dw	zmake68kPtr(Sound_80),zmake68kPtr(Sound_81),zmake68kPtr(Sound_82),zmake68kPtr(Sound_83)
-		dw	zmake68kPtr(Sound_84),zmake68kPtr(Sound_85),zmake68kPtr(Sound_86),zmake68kPtr(Sound_87)
-		dw	zmake68kPtr(Sound_88),zmake68kPtr(Sound_89),zmake68kPtr(Sound_8A),zmake68kPtr(Sound_8B)
-		dw	zmake68kPtr(Sound_8C),zmake68kPtr(Sound_8D),zmake68kPtr(Sound_8E),zmake68kPtr(Sound_8F)
+		zmake68kPtrs  Sound_80, Sound_81, Sound_82, Sound_83
+		zmake68kPtrs  Sound_84, Sound_85, Sound_86, Sound_87
+		zmake68kPtrs  Sound_88, Sound_89, Sound_8A, Sound_8B
+		zmake68kPtrs  Sound_8C, Sound_8D, Sound_8E, Sound_8F
 
-		dw	zmake68kPtr(Sound_90),zmake68kPtr(Sound_91),zmake68kPtr(Sound_92),zmake68kPtr(Sound_93)
-		dw	zmake68kPtr(Sound_94),zmake68kPtr(Sound_95),zmake68kPtr(Sound_96),zmake68kPtr(Sound_97)
-		dw	zmake68kPtr(Sound_98),zmake68kPtr(Sound_99),zmake68kPtr(Sound_9A),zmake68kPtr(Sound_9B)
-		dw	zmake68kPtr(Sound_9C),zmake68kPtr(Sound_9D),zmake68kPtr(Sound_9E),zmake68kPtr(Sound_9F)
+		zmake68kPtrs  Sound_90, Sound_91, Sound_92, Sound_93
+		zmake68kPtrs  Sound_94, Sound_95, Sound_96, Sound_97
+		zmake68kPtrs  Sound_98, Sound_99, Sound_9A, Sound_9B
+		zmake68kPtrs  Sound_9C, Sound_9D, Sound_9E, Sound_9F
 
-		dw	zmake68kPtr(Sound_A0),zmake68kPtr(Sound_A1),zmake68kPtr(Sound_A2),zmake68kPtr(Sound_A3)
-		dw	zmake68kPtr(Sound_A4),zmake68kPtr(Sound_A5),zmake68kPtr(Sound_A6),zmake68kPtr(Sound_A7)
-		dw	zmake68kPtr(Sound_A8),zmake68kPtr(Sound_A9),zmake68kPtr(Sound_AA),zmake68kPtr(Sound_AB)
-		dw	zmake68kPtr(Sound_AC),zmake68kPtr(Sound_AD),zmake68kPtr(Sound_AE),zmake68kPtr(Sound_AF)
+		zmake68kPtrs  Sound_A0, Sound_A1, Sound_A2, Sound_A3
+		zmake68kPtrs  Sound_A4, Sound_A5, Sound_A6, Sound_A7
+		zmake68kPtrs  Sound_A8, Sound_A9, Sound_AA, Sound_AB
+		zmake68kPtrs  Sound_AC, Sound_AD, Sound_AE, Sound_AF
 
-		dw	zmake68kPtr(Sound_B0),zmake68kPtr(Sound_B1),zmake68kPtr(Sound_B2),zmake68kPtr(Sound_B3)
-		dw	zmake68kPtr(Sound_B4),zmake68kPtr(Sound_B5),zmake68kPtr(Sound_B6),zmake68kPtr(Sound_B7)
-		dw	zmake68kPtr(Sound_B8),zmake68kPtr(Sound_B9),zmake68kPtr(Sound_BA),zmake68kPtr(Sound_BB)
-		dw	zmake68kPtr(Sound_BC),zmake68kPtr(Sound_BD),zmake68kPtr(Sound_BE),zmake68kPtr(Sound_BF)
+		zmake68kPtrs  Sound_B0, Sound_B1, Sound_B2, Sound_B3
+		zmake68kPtrs  Sound_B4, Sound_B5, Sound_B6, Sound_B7
+		zmake68kPtrs  Sound_B8, Sound_B9, Sound_BA, Sound_BB
+		zmake68kPtrs  Sound_BC, Sound_BD, Sound_BE, Sound_BF
 
-		dw	zmake68kPtr(Sound_C0),zmake68kPtr(Sound_C1),zmake68kPtr(Sound_C2),zmake68kPtr(Sound_C3)
-		dw	zmake68kPtr(Sound_C4),zmake68kPtr(Sound_C5),zmake68kPtr(Sound_C6),zmake68kPtr(Sound_C7)
-		dw	zmake68kPtr(Sound_C8),zmake68kPtr(Sound_C9),zmake68kPtr(Sound_CA),zmake68kPtr(Sound_CB)
-		dw	zmake68kPtr(Sound_CC),zmake68kPtr(Sound_CD),zmake68kPtr(Sound_CE),zmake68kPtr(Sound_CF)
+		zmake68kPtrs  Sound_C0, Sound_C1, Sound_C2, Sound_C3
+		zmake68kPtrs  Sound_C4, Sound_C5, Sound_C6, Sound_C7
+		zmake68kPtrs  Sound_C8, Sound_C9, Sound_CA, Sound_CB
+		zmake68kPtrs  Sound_CC, Sound_CD, Sound_CE, Sound_CF
 
-		dw	zmake68kPtr(Sound_D0),zmake68kPtr(Sound_D1),zmake68kPtr(Sound_D2),zmake68kPtr(Sound_D3)
-		dw	zmake68kPtr(Sound_D4),zmake68kPtr(Sound_D5),zmake68kPtr(Sound_D6),zmake68kPtr(Sound_D7)
-		dw	zmake68kPtr(Sound_D8),zmake68kPtr(Sound_D9),zmake68kPtr(Sound_DA),zmake68kPtr(Sound_DB)
-		dw	zmake68kPtr(Sound_DB),zmake68kPtr(Sound_DB),zmake68kPtr(Sound_DB),zmake68kPtr(Sound_DB)
+		zmake68kPtrs  Sound_D0, Sound_D1, Sound_D2, Sound_D3
+		zmake68kPtrs  Sound_D4, Sound_D5, Sound_D6, Sound_D7
+		zmake68kPtrs  Sound_D8, Sound_D9, Sound_DA, Sound_DB
+		zmake68kPtrs  Sound_DB, Sound_DB, Sound_DB, Sound_DB
 ; ---------------------------------------------------------------------------
 ; ===========================================================================
 ; FM Universal Voice Bank
@@ -4624,111 +4662,635 @@ z80_SFXPointers:
 	endif
 
 z80_UniVoiceBank:
-		; Synth Bass 2
-		db  3Ch,   1,   0,   0,   0, 1Fh, 1Fh, 15h, 1Fh, 11h, 0Dh, 12h,   5
-		db         7,   4,   9,   2, 55h, 3Ah, 25h, 1Ah, 1Ah, 80h,   7, 80h	; 0
-		; Trumpet 1
-		db  3Dh,   1,   1,   1,   1, 94h, 19h, 19h, 19h, 0Fh, 0Dh, 0Dh, 0Dh
-		db         7,   4,   4,   4, 25h, 1Ah, 1Ah, 1Ah, 15h, 80h, 80h, 80h	; 25
-		; Slap Bass 2
-		db    3,   0,0D7h, 33h,   2, 5Fh, 9Fh, 5Fh, 1Fh, 13h, 0Fh, 0Ah, 0Ah
-		db       10h, 0Fh,   2,   9, 35h, 15h, 25h, 1Ah, 13h, 16h, 15h, 80h	; 50
-		; Synth Bass 1
-		db  34h, 70h, 72h, 31h, 31h, 1Fh, 1Fh, 1Fh, 1Fh, 10h,   6,   6,   6
-		db         1,   6,   6,   6, 35h, 1Ah, 15h, 1Ah, 10h, 83h, 18h, 83h	; 75
-		; Bell Synth 1
-		db  3Eh, 77h, 71h, 32h, 31h, 1Fh, 1Fh, 1Fh, 1Fh, 0Dh,   6,   0,   0
-		db         8,   6,   0,   0, 15h, 0Ah, 0Ah, 0Ah, 1Bh, 80h, 80h, 80h	; 100
-		; Bell Synth 2
-		db  34h, 33h, 41h, 7Eh, 74h, 5Bh, 9Fh, 5Fh, 1Fh,   4,   7,   7,   8
-		db         0,   0,   0,   0,0FFh,0FFh,0EFh,0FFh, 23h, 80h, 29h, 87h	; 125
-		; Synth Brass 1
-		db  3Ah,   1,   7, 31h, 71h, 8Eh, 8Eh, 8Dh, 53h, 0Eh, 0Eh, 0Eh,   3
-		db         0,   0,   0,   7, 1Fh,0FFh, 1Fh, 0Fh, 18h, 28h, 27h, 80h	; 150
-		; Synth like Bassoon
-		db  3Ch, 32h, 32h, 71h, 42h, 1Fh, 18h, 1Fh, 1Eh,   7, 1Fh,   7, 1Fh
-		db         0,   0,   0,   0, 1Fh, 0Fh, 1Fh, 0Fh, 1Eh, 80h, 0Ch, 80h	; 175
-		; Bell Horn type thing
-		db  3Ch, 71h, 72h, 3Fh, 34h, 8Dh, 52h, 9Fh, 1Fh,   9,   0,   0, 0Dh
-		db         0,   0,   0,   0, 23h,   8,   2,0F7h, 15h, 80h, 1Dh, 87h	; 200
-		; Synth Bass 3
-		db  3Dh,   1,   1,   0,   0, 8Eh, 52h, 14h, 4Ch,   8,   8, 0Eh,   3
-		db         0,   0,   0,   0, 1Fh, 1Fh, 1Fh, 1Fh, 1Bh, 80h, 80h, 9Bh	; 225
-		; Synth Trumpet
-		db  3Ah,   1,   1,   1,   2, 8Dh,   7,   7, 52h,   9,   0,   0,   3
-		db         1,   2,   2,   0, 52h,   2,   2, 28h, 18h, 22h, 18h, 80h	; 250
-		; Wood Block
-		db  3Ch, 36h, 31h, 76h, 71h, 94h, 9Fh, 96h, 9Fh, 12h,   0, 14h, 0Fh
-		db         4, 0Ah,   4, 0Dh, 2Fh, 0Fh, 4Fh, 2Fh, 33h, 80h, 1Ah, 80h	; 275
-		; Tubular Bell
-		db  34h, 33h, 41h, 7Eh, 74h, 5Bh, 9Fh, 5Fh, 1Fh,   4,   7,   7,   8
-		db         0,   0,   0,   0,0FFh,0FFh,0EFh,0FFh, 23h, 90h, 29h, 97h	; 300
-		; Strike Bass
-		db  38h, 63h, 31h, 31h, 31h, 10h, 13h, 1Ah, 1Bh, 0Eh,   0,   0,   0
-		db         0,   0,   0,   0, 3Fh, 0Fh, 0Fh, 0Fh, 1Ah, 19h, 1Ah, 80h	; 325
-		; Elec Piano
-		db  3Ah, 31h, 25h, 73h, 41h, 5Fh, 1Fh, 1Fh, 9Ch,   8,   5,   4,   5
-		db         3,   4,   2,   2, 2Fh, 2Fh, 1Fh, 2Fh, 29h, 27h, 1Fh, 80h	; 350
-		; Bright Piano
-		db    4, 71h, 41h, 31h, 31h, 12h, 12h, 12h, 12h,   0,   0,   0,   0
-		db         0,   0,   0,   0, 0Fh, 0Fh, 0Fh, 0Fh, 23h, 80h, 23h, 80h	; 375
-		; Church Bell
-		db  14h, 75h, 72h, 35h, 32h, 9Fh, 9Fh, 9Fh, 9Fh,   5,   5,   0, 0Ah
-		db         5,   5,   7,   5, 2Fh,0FFh, 0Fh, 2Fh, 1Eh, 80h, 14h, 80h	; 400
-		; Synth Brass 2
-		db  3Dh,   1,   0,   1,   2, 12h, 1Fh, 1Fh, 14h,   7,   2,   2, 0Ah
-		db         5,   5,   5,   5, 2Fh, 2Fh, 2Fh,0AFh, 1Ch, 80h, 82h, 80h	; 425
-		; Bell Piano
-		db  1Ch, 73h, 72h, 33h, 32h, 94h, 99h, 94h, 99h,   8, 0Ah,   8, 0Ah
-		db         0,   5,   0,   5, 3Fh, 4Fh, 3Fh, 4Fh, 1Eh, 80h, 19h, 80h	; 450
-		; Wet Wood Bass
-		db  31h, 33h,   1,   0,   0, 9Fh, 1Fh, 1Fh, 1Fh, 0Dh, 0Ah, 0Ah, 0Ah
-		db       0Ah,   7,   7,   7,0FFh,0AFh,0AFh,0AFh, 1Eh, 1Eh, 1Eh, 80h	; 475
-		; Silent Bass
-		db  3Ah, 70h, 76h, 30h, 71h, 1Fh, 95h, 1Fh, 1Fh, 0Eh, 0Fh,   5, 0Ch
-		db         7,   6,   6,   7, 2Fh, 4Fh, 1Fh, 5Fh, 21h, 12h, 28h, 80h	; 500
-		; Picked Bass
-		db  28h, 71h,   0, 30h,   1, 1Fh, 1Fh, 1Dh, 1Fh, 13h, 13h,   6,   5
-		db         3,   3,   2,   5, 4Fh, 4Fh, 2Fh, 3Fh, 0Eh, 14h, 1Eh, 80h	; 525
-		; Xylophone
-		db  3Eh, 38h,   1, 7Ah, 34h, 59h,0D9h, 5Fh, 9Ch, 0Fh,   4, 0Fh, 0Ah
-		db         2,   2,   5,   5,0AFh,0AFh, 66h, 66h, 28h, 80h,0A3h, 80h	; 550
-		; Sine Flute
-		db  39h, 32h, 31h, 72h, 71h, 1Fh, 1Fh, 1Fh, 1Fh,   0,   0,   0,   0
-		db         0,   0,   0,   0, 0Fh, 0Fh, 0Fh, 0Fh, 1Bh, 32h, 28h, 80h	; 575
-		; Pipe Organ
-		db    7, 34h, 74h, 32h, 71h, 1Fh, 1Fh, 1Fh, 1Fh, 0Ah, 0Ah,   5,   3
-		db         0,   0,   0,   0, 3Fh, 3Fh, 2Fh, 2Fh, 8Ah, 8Ah, 80h, 80h	; 600
-		; Synth Brass 2
-		db  3Ah, 31h, 37h, 31h, 31h, 8Dh, 8Dh, 8Eh, 53h, 0Eh, 0Eh, 0Eh,   3
-		db         0,   0,   0,   0, 1Fh,0FFh, 1Fh, 0Fh, 17h, 28h, 26h, 80h	; 625
-		; Harpsichord
-		db  3Bh, 3Ah, 31h, 71h, 74h,0DFh, 1Fh, 1Fh,0DFh,   0, 0Ah, 0Ah,   5
-		db         0,   5,   5,   3, 0Fh, 5Fh, 1Fh, 5Fh, 32h, 1Eh, 0Fh, 80h	; 650
-		; Metallic Bass
-		db    5,   4,   1,   2,   4, 8Dh, 1Fh, 15h, 52h,   6,   0,   0,   4
-		db         2,   8,   0,   0, 1Fh, 0Fh, 0Fh, 2Fh, 16h, 90h, 84h, 8Ch	; 675
-		; Alternate Metallic Bass
-		db  2Ch, 71h, 74h, 32h, 32h, 1Fh, 12h, 1Fh, 12h,   0, 0Ah,   0, 0Ah
-		db         0,   0,   0,   0, 0Fh, 1Fh, 0Fh, 1Fh, 16h, 80h, 17h, 80h	; 700
-		; Backdropped Metallic Bass
-		db  3Ah,   1,   7,   1,   1, 8Eh, 8Eh, 8Dh, 53h, 0Eh, 0Eh, 0Eh,   3
-		db         0,   0,   0,   7, 1Fh,0FFh, 1Fh, 0Fh, 18h, 28h, 27h, 8Fh	; 725
-		; Sine like Bell
-		db  36h, 7Ah, 32h, 51h, 11h, 1Fh, 1Fh, 59h, 1Ch, 0Ah, 0Dh,   6, 0Ah
-		db         7,   0,   2,   2,0AFh, 5Fh, 5Fh, 5Fh, 1Eh, 8Bh, 81h, 80h	; 750
-		; Synth like Metallic with Small Bell
-		db  3Ch, 71h, 72h, 3Fh, 34h, 8Dh, 52h, 9Fh, 1Fh,   9,   0,   0, 0Dh
-		db         0,   0,   0,   0, 23h,   8,   2,0F7h, 15h, 85h, 1Dh, 8Ah	; 775
-		; Nice Synth like lead
-		db  3Eh, 77h, 71h, 32h, 31h, 1Fh, 1Fh, 1Fh, 1Fh, 0Dh,   6,   0,   0
-		db         8,   6,   0,   0, 15h, 0Ah, 0Ah, 0Ah, 1Bh, 8Fh, 8Fh, 8Fh	; 800
-		; Rock Organ
-		db    7, 34h, 74h, 32h, 71h, 1Fh, 1Fh, 1Fh, 1Fh, 0Ah, 0Ah,   5,   3
-		db         0,   0,   0,   0, 3Fh, 3Fh, 2Fh, 2Fh, 8Ah, 8Ah, 8Ah, 8Ah	; 825
-		; Strike like Slap Bass
-		db  20h, 36h, 35h, 30h, 31h,0DFh,0DFh, 9Fh, 9Fh,   7,   6,   9,   6
-		db         7,   6,   6,   8, 20h, 10h, 10h,0F8h, 19h, 37h, 13h, 80h	; 850
+;	Voice 00h - Synth Bass 2
+;	3Ch
+;	01h, 00h, 00h, 00h, 	1Fh, 1Fh, 15h, 1Fh, 	11h, 0Dh, 12h, 05h
+;	07h, 04h, 09h, 02h, 	55h, 3Ah, 25h, 1Ah, 	1Ah, 80h, 07h, 80h
+	smpsVcAlgorithm     04h
+	smpsVcFeedback      07h
+	smpsVcUnusedBits    00h
+	smpsVcDetune        00h, 00h, 00h, 00h
+	smpsVcCoarseFreq    00h, 00h, 00h, 01h
+	smpsVcRateScale     00h, 00h, 00h, 00h
+	smpsVcAttackRate    1Fh, 15h, 1Fh, 1Fh
+	smpsVcAmpMod        00h, 00h, 00h, 00h
+	smpsVcDecayRate1    05h, 12h, 0Dh, 11h
+	smpsVcDecayRate2    02h, 09h, 04h, 07h
+	smpsVcDecayLevel    01h, 02h, 03h, 05h
+	smpsVcReleaseRate   0Ah, 05h, 0Ah, 05h
+	smpsVcTotalLevel    80h, 07h, 80h, 1Ah
+
+;	Voice 01h - Trumpet 1
+;	3Dh
+;	01h, 01h, 01h, 01h, 	94h, 19h, 19h, 19h, 	0Fh, 0Dh, 0Dh, 0Dh
+;	07h, 04h, 04h, 04h, 	25h, 1Ah, 1Ah, 1Ah, 	15h, 80h, 80h, 80h
+	smpsVcAlgorithm     05h
+	smpsVcFeedback      07h
+	smpsVcUnusedBits    00h
+	smpsVcDetune        00h, 00h, 00h, 00h
+	smpsVcCoarseFreq    01h, 01h, 01h, 01h
+	smpsVcRateScale     00h, 00h, 00h, 02h
+	smpsVcAttackRate    19h, 19h, 19h, 14h
+	smpsVcAmpMod        00h, 00h, 00h, 00h
+	smpsVcDecayRate1    0Dh, 0Dh, 0Dh, 0Fh
+	smpsVcDecayRate2    04h, 04h, 04h, 07h
+	smpsVcDecayLevel    01h, 01h, 01h, 02h
+	smpsVcReleaseRate   0Ah, 0Ah, 0Ah, 05h
+	smpsVcTotalLevel    80h, 80h, 80h, 15h
+
+;	Voice 02h - Slap Bass 2
+;	03h
+;	00h, 0D7h, 33h, 02h, 	5Fh, 9Fh, 5Fh, 1Fh, 	13h, 0Fh, 0Ah, 0Ah
+;	10h, 0Fh, 02h, 09h, 	35h, 15h, 25h, 1Ah, 	13h, 16h, 15h, 80h
+	smpsVcAlgorithm     03h
+	smpsVcFeedback      00h
+	smpsVcUnusedBits    00h
+	smpsVcDetune        00h, 03h, 0Dh, 00h
+	smpsVcCoarseFreq    02h, 03h, 07h, 00h
+	smpsVcRateScale     00h, 01h, 02h, 01h
+	smpsVcAttackRate    1Fh, 1Fh, 1Fh, 1Fh
+	smpsVcAmpMod        00h, 00h, 00h, 00h
+	smpsVcDecayRate1    0Ah, 0Ah, 0Fh, 13h
+	smpsVcDecayRate2    09h, 02h, 0Fh, 10h
+	smpsVcDecayLevel    01h, 02h, 01h, 03h
+	smpsVcReleaseRate   0Ah, 05h, 05h, 05h
+	smpsVcTotalLevel    80h, 15h, 16h, 13h
+
+;	Voice 03h - Synth Bass 1
+;	34h
+;	70h, 72h, 31h, 31h, 	1Fh, 1Fh, 1Fh, 1Fh, 	10h, 06h, 06h, 06h
+;	01h, 06h, 06h, 06h, 	35h, 1Ah, 15h, 1Ah, 	10h, 83h, 18h, 83h
+	smpsVcAlgorithm     04h
+	smpsVcFeedback      06h
+	smpsVcUnusedBits    00h
+	smpsVcDetune        03h, 03h, 07h, 07h
+	smpsVcCoarseFreq    01h, 01h, 02h, 00h
+	smpsVcRateScale     00h, 00h, 00h, 00h
+	smpsVcAttackRate    1Fh, 1Fh, 1Fh, 1Fh
+	smpsVcAmpMod        00h, 00h, 00h, 00h
+	smpsVcDecayRate1    06h, 06h, 06h, 10h
+	smpsVcDecayRate2    06h, 06h, 06h, 01h
+	smpsVcDecayLevel    01h, 01h, 01h, 03h
+	smpsVcReleaseRate   0Ah, 05h, 0Ah, 05h
+	smpsVcTotalLevel    83h, 18h, 83h, 10h
+
+;	Voice 04h - Bell Synth 1
+;	3Eh
+;	77h, 71h, 32h, 31h, 	1Fh, 1Fh, 1Fh, 1Fh, 	0Dh, 06h, 00h, 00h
+;	08h, 06h, 00h, 00h, 	15h, 0Ah, 0Ah, 0Ah, 	1Bh, 80h, 80h, 80h
+	smpsVcAlgorithm     06h
+	smpsVcFeedback      07h
+	smpsVcUnusedBits    00h
+	smpsVcDetune        03h, 03h, 07h, 07h
+	smpsVcCoarseFreq    01h, 02h, 01h, 07h
+	smpsVcRateScale     00h, 00h, 00h, 00h
+	smpsVcAttackRate    1Fh, 1Fh, 1Fh, 1Fh
+	smpsVcAmpMod        00h, 00h, 00h, 00h
+	smpsVcDecayRate1    00h, 00h, 06h, 0Dh
+	smpsVcDecayRate2    00h, 00h, 06h, 08h
+	smpsVcDecayLevel    00h, 00h, 00h, 01h
+	smpsVcReleaseRate   0Ah, 0Ah, 0Ah, 05h
+	smpsVcTotalLevel    80h, 80h, 80h, 1Bh
+
+;	Voice 05h - Bell Synth 2
+;	34h
+;	33h, 41h, 7Eh, 74h, 	5Bh, 9Fh, 5Fh, 1Fh, 	04h, 07h, 07h, 08h
+;	00h, 00h, 00h, 00h, 	0FFh, 0FFh, 0EFh, 0FFh, 	23h, 80h, 29h, 87h
+	smpsVcAlgorithm     04h
+	smpsVcFeedback      06h
+	smpsVcUnusedBits    00h
+	smpsVcDetune        07h, 07h, 04h, 03h
+	smpsVcCoarseFreq    04h, 0Eh, 01h, 03h
+	smpsVcRateScale     00h, 01h, 02h, 01h
+	smpsVcAttackRate    1Fh, 1Fh, 1Fh, 1Bh
+	smpsVcAmpMod        00h, 00h, 00h, 00h
+	smpsVcDecayRate1    08h, 07h, 07h, 04h
+	smpsVcDecayRate2    00h, 00h, 00h, 00h
+	smpsVcDecayLevel    0Fh, 0Eh, 0Fh, 0Fh
+	smpsVcReleaseRate   0Fh, 0Fh, 0Fh, 0Fh
+	smpsVcTotalLevel    87h, 29h, 80h, 23h
+
+;	Voice 06h - Synth Brass 1
+;	3Ah
+;	01h, 07h, 31h, 71h, 	8Eh, 8Eh, 8Dh, 53h, 	0Eh, 0Eh, 0Eh, 03h
+;	00h, 00h, 00h, 07h, 	1Fh, 0FFh, 1Fh, 0Fh, 	18h, 28h, 27h, 80h
+	smpsVcAlgorithm     02h
+	smpsVcFeedback      07h
+	smpsVcUnusedBits    00h
+	smpsVcDetune        07h, 03h, 00h, 00h
+	smpsVcCoarseFreq    01h, 01h, 07h, 01h
+	smpsVcRateScale     01h, 02h, 02h, 02h
+	smpsVcAttackRate    13h, 0Dh, 0Eh, 0Eh
+	smpsVcAmpMod        00h, 00h, 00h, 00h
+	smpsVcDecayRate1    03h, 0Eh, 0Eh, 0Eh
+	smpsVcDecayRate2    07h, 00h, 00h, 00h
+	smpsVcDecayLevel    00h, 01h, 0Fh, 01h
+	smpsVcReleaseRate   0Fh, 0Fh, 0Fh, 0Fh
+	smpsVcTotalLevel    80h, 27h, 28h, 18h
+
+;	Voice 07h - Synth like Bassoon
+;	3Ch
+;	32h, 32h, 71h, 42h, 	1Fh, 18h, 1Fh, 1Eh, 	07h, 1Fh, 07h, 1Fh
+;	00h, 00h, 00h, 00h, 	1Fh, 0Fh, 1Fh, 0Fh, 	1Eh, 80h, 0Ch, 80h
+	smpsVcAlgorithm     04h
+	smpsVcFeedback      07h
+	smpsVcUnusedBits    00h
+	smpsVcDetune        04h, 07h, 03h, 03h
+	smpsVcCoarseFreq    02h, 01h, 02h, 02h
+	smpsVcRateScale     00h, 00h, 00h, 00h
+	smpsVcAttackRate    1Eh, 1Fh, 18h, 1Fh
+	smpsVcAmpMod        00h, 00h, 00h, 00h
+	smpsVcDecayRate1    1Fh, 07h, 1Fh, 07h
+	smpsVcDecayRate2    00h, 00h, 00h, 00h
+	smpsVcDecayLevel    00h, 01h, 00h, 01h
+	smpsVcReleaseRate   0Fh, 0Fh, 0Fh, 0Fh
+	smpsVcTotalLevel    80h, 0Ch, 80h, 1Eh
+
+;	Voice 08h - Bell Horn type thing
+;	3Ch
+;	71h, 72h, 3Fh, 34h, 	8Dh, 52h, 9Fh, 1Fh, 	09h, 00h, 00h, 0Dh
+;	00h, 00h, 00h, 00h, 	23h, 08h, 02h, 0F7h, 	15h, 80h, 1Dh, 87h
+	smpsVcAlgorithm     04h
+	smpsVcFeedback      07h
+	smpsVcUnusedBits    00h
+	smpsVcDetune        03h, 03h, 07h, 07h
+	smpsVcCoarseFreq    04h, 0Fh, 02h, 01h
+	smpsVcRateScale     00h, 02h, 01h, 02h
+	smpsVcAttackRate    1Fh, 1Fh, 12h, 0Dh
+	smpsVcAmpMod        00h, 00h, 00h, 00h
+	smpsVcDecayRate1    0Dh, 00h, 00h, 09h
+	smpsVcDecayRate2    00h, 00h, 00h, 00h
+	smpsVcDecayLevel    0Fh, 00h, 00h, 02h
+	smpsVcReleaseRate   07h, 02h, 08h, 03h
+	smpsVcTotalLevel    87h, 1Dh, 80h, 15h
+
+;	Voice 09h - Synth Bass 3
+;	3Dh
+;	01h, 01h, 00h, 00h, 	8Eh, 52h, 14h, 4Ch, 	08h, 08h, 0Eh, 03h
+;	00h, 00h, 00h, 00h, 	1Fh, 1Fh, 1Fh, 1Fh, 	1Bh, 80h, 80h, 9Bh
+	smpsVcAlgorithm     05h
+	smpsVcFeedback      07h
+	smpsVcUnusedBits    00h
+	smpsVcDetune        00h, 00h, 00h, 00h
+	smpsVcCoarseFreq    00h, 00h, 01h, 01h
+	smpsVcRateScale     01h, 00h, 01h, 02h
+	smpsVcAttackRate    0Ch, 14h, 12h, 0Eh
+	smpsVcAmpMod        00h, 00h, 00h, 00h
+	smpsVcDecayRate1    03h, 0Eh, 08h, 08h
+	smpsVcDecayRate2    00h, 00h, 00h, 00h
+	smpsVcDecayLevel    01h, 01h, 01h, 01h
+	smpsVcReleaseRate   0Fh, 0Fh, 0Fh, 0Fh
+	smpsVcTotalLevel    9Bh, 80h, 80h, 1Bh
+
+;	Voice 0Ah - Synth Trumpet
+;	3Ah
+;	01h, 01h, 01h, 02h, 	8Dh, 07h, 07h, 52h, 	09h, 00h, 00h, 03h
+;	01h, 02h, 02h, 00h, 	52h, 02h, 02h, 28h, 	18h, 22h, 18h, 80h
+	smpsVcAlgorithm     02h
+	smpsVcFeedback      07h
+	smpsVcUnusedBits    00h
+	smpsVcDetune        00h, 00h, 00h, 00h
+	smpsVcCoarseFreq    02h, 01h, 01h, 01h
+	smpsVcRateScale     01h, 00h, 00h, 02h
+	smpsVcAttackRate    12h, 07h, 07h, 0Dh
+	smpsVcAmpMod        00h, 00h, 00h, 00h
+	smpsVcDecayRate1    03h, 00h, 00h, 09h
+	smpsVcDecayRate2    00h, 02h, 02h, 01h
+	smpsVcDecayLevel    02h, 00h, 00h, 05h
+	smpsVcReleaseRate   08h, 02h, 02h, 02h
+	smpsVcTotalLevel    80h, 18h, 22h, 18h
+
+;	Voice 0Bh - Wood Block
+;	3Ch
+;	36h, 31h, 76h, 71h, 	94h, 9Fh, 96h, 9Fh, 	12h, 00h, 14h, 0Fh
+;	04h, 0Ah, 04h, 0Dh, 	2Fh, 0Fh, 4Fh, 2Fh, 	33h, 80h, 1Ah, 80h
+	smpsVcAlgorithm     04h
+	smpsVcFeedback      07h
+	smpsVcUnusedBits    00h
+	smpsVcDetune        07h, 07h, 03h, 03h
+	smpsVcCoarseFreq    01h, 06h, 01h, 06h
+	smpsVcRateScale     02h, 02h, 02h, 02h
+	smpsVcAttackRate    1Fh, 16h, 1Fh, 14h
+	smpsVcAmpMod        00h, 00h, 00h, 00h
+	smpsVcDecayRate1    0Fh, 14h, 00h, 12h
+	smpsVcDecayRate2    0Dh, 04h, 0Ah, 04h
+	smpsVcDecayLevel    02h, 04h, 00h, 02h
+	smpsVcReleaseRate   0Fh, 0Fh, 0Fh, 0Fh
+	smpsVcTotalLevel    80h, 1Ah, 80h, 33h
+
+;	Voice 0Ch - Tubular Bell
+;	34h
+;	33h, 41h, 7Eh, 74h, 	5Bh, 9Fh, 5Fh, 1Fh, 	04h, 07h, 07h, 08h
+;	00h, 00h, 00h, 00h, 	0FFh, 0FFh, 0EFh, 0FFh, 	23h, 90h, 29h, 97h
+	smpsVcAlgorithm     04h
+	smpsVcFeedback      06h
+	smpsVcUnusedBits    00h
+	smpsVcDetune        07h, 07h, 04h, 03h
+	smpsVcCoarseFreq    04h, 0Eh, 01h, 03h
+	smpsVcRateScale     00h, 01h, 02h, 01h
+	smpsVcAttackRate    1Fh, 1Fh, 1Fh, 1Bh
+	smpsVcAmpMod        00h, 00h, 00h, 00h
+	smpsVcDecayRate1    08h, 07h, 07h, 04h
+	smpsVcDecayRate2    00h, 00h, 00h, 00h
+	smpsVcDecayLevel    0Fh, 0Eh, 0Fh, 0Fh
+	smpsVcReleaseRate   0Fh, 0Fh, 0Fh, 0Fh
+	smpsVcTotalLevel    97h, 29h, 90h, 23h
+
+;	Voice 0Dh - Strike Bass
+;	38h
+;	63h, 31h, 31h, 31h, 	10h, 13h, 1Ah, 1Bh, 	0Eh, 00h, 00h, 00h
+;	00h, 00h, 00h, 00h, 	3Fh, 0Fh, 0Fh, 0Fh, 	1Ah, 19h, 1Ah, 80h
+	smpsVcAlgorithm     00h
+	smpsVcFeedback      07h
+	smpsVcUnusedBits    00h
+	smpsVcDetune        03h, 03h, 03h, 06h
+	smpsVcCoarseFreq    01h, 01h, 01h, 03h
+	smpsVcRateScale     00h, 00h, 00h, 00h
+	smpsVcAttackRate    1Bh, 1Ah, 13h, 10h
+	smpsVcAmpMod        00h, 00h, 00h, 00h
+	smpsVcDecayRate1    00h, 00h, 00h, 0Eh
+	smpsVcDecayRate2    00h, 00h, 00h, 00h
+	smpsVcDecayLevel    00h, 00h, 00h, 03h
+	smpsVcReleaseRate   0Fh, 0Fh, 0Fh, 0Fh
+	smpsVcTotalLevel    80h, 1Ah, 19h, 1Ah
+
+;	Voice 0Eh - Elec Piano
+;	3Ah
+;	31h, 25h, 73h, 41h, 	5Fh, 1Fh, 1Fh, 9Ch, 	08h, 05h, 04h, 05h
+;	03h, 04h, 02h, 02h, 	2Fh, 2Fh, 1Fh, 2Fh, 	29h, 27h, 1Fh, 80h
+	smpsVcAlgorithm     02h
+	smpsVcFeedback      07h
+	smpsVcUnusedBits    00h
+	smpsVcDetune        04h, 07h, 02h, 03h
+	smpsVcCoarseFreq    01h, 03h, 05h, 01h
+	smpsVcRateScale     02h, 00h, 00h, 01h
+	smpsVcAttackRate    1Ch, 1Fh, 1Fh, 1Fh
+	smpsVcAmpMod        00h, 00h, 00h, 00h
+	smpsVcDecayRate1    05h, 04h, 05h, 08h
+	smpsVcDecayRate2    02h, 02h, 04h, 03h
+	smpsVcDecayLevel    02h, 01h, 02h, 02h
+	smpsVcReleaseRate   0Fh, 0Fh, 0Fh, 0Fh
+	smpsVcTotalLevel    80h, 1Fh, 27h, 29h
+
+;	Voice 0Fh - Bright Piano
+;	04h
+;	71h, 41h, 31h, 31h, 	12h, 12h, 12h, 12h, 	00h, 00h, 00h, 00h
+;	00h, 00h, 00h, 00h, 	0Fh, 0Fh, 0Fh, 0Fh, 	23h, 80h, 23h, 80h
+	smpsVcAlgorithm     04h
+	smpsVcFeedback      00h
+	smpsVcUnusedBits    00h
+	smpsVcDetune        03h, 03h, 04h, 07h
+	smpsVcCoarseFreq    01h, 01h, 01h, 01h
+	smpsVcRateScale     00h, 00h, 00h, 00h
+	smpsVcAttackRate    12h, 12h, 12h, 12h
+	smpsVcAmpMod        00h, 00h, 00h, 00h
+	smpsVcDecayRate1    00h, 00h, 00h, 00h
+	smpsVcDecayRate2    00h, 00h, 00h, 00h
+	smpsVcDecayLevel    00h, 00h, 00h, 00h
+	smpsVcReleaseRate   0Fh, 0Fh, 0Fh, 0Fh
+	smpsVcTotalLevel    80h, 23h, 80h, 23h
+
+;	Voice 10h - Church Bell
+;	14h
+;	75h, 72h, 35h, 32h, 	9Fh, 9Fh, 9Fh, 9Fh, 	05h, 05h, 00h, 0Ah
+;	05h, 05h, 07h, 05h, 	2Fh, 0FFh, 0Fh, 2Fh, 	1Eh, 80h, 14h, 80h
+	smpsVcAlgorithm     04h
+	smpsVcFeedback      02h
+	smpsVcUnusedBits    00h
+	smpsVcDetune        03h, 03h, 07h, 07h
+	smpsVcCoarseFreq    02h, 05h, 02h, 05h
+	smpsVcRateScale     02h, 02h, 02h, 02h
+	smpsVcAttackRate    1Fh, 1Fh, 1Fh, 1Fh
+	smpsVcAmpMod        00h, 00h, 00h, 00h
+	smpsVcDecayRate1    0Ah, 00h, 05h, 05h
+	smpsVcDecayRate2    05h, 07h, 05h, 05h
+	smpsVcDecayLevel    02h, 00h, 0Fh, 02h
+	smpsVcReleaseRate   0Fh, 0Fh, 0Fh, 0Fh
+	smpsVcTotalLevel    80h, 14h, 80h, 1Eh
+
+;	Voice 11h - Synth Brass 2
+;	3Dh
+;	01h, 00h, 01h, 02h, 	12h, 1Fh, 1Fh, 14h, 	07h, 02h, 02h, 0Ah
+;	05h, 05h, 05h, 05h, 	2Fh, 2Fh, 2Fh, 0AFh, 	1Ch, 80h, 82h, 80h
+	smpsVcAlgorithm     05h
+	smpsVcFeedback      07h
+	smpsVcUnusedBits    00h
+	smpsVcDetune        00h, 00h, 00h, 00h
+	smpsVcCoarseFreq    02h, 01h, 00h, 01h
+	smpsVcRateScale     00h, 00h, 00h, 00h
+	smpsVcAttackRate    14h, 1Fh, 1Fh, 12h
+	smpsVcAmpMod        00h, 00h, 00h, 00h
+	smpsVcDecayRate1    0Ah, 02h, 02h, 07h
+	smpsVcDecayRate2    05h, 05h, 05h, 05h
+	smpsVcDecayLevel    0Ah, 02h, 02h, 02h
+	smpsVcReleaseRate   0Fh, 0Fh, 0Fh, 0Fh
+	smpsVcTotalLevel    80h, 82h, 80h, 1Ch
+
+;	Voice 12h - Bell Piano
+;	1Ch
+;	73h, 72h, 33h, 32h, 	94h, 99h, 94h, 99h, 	08h, 0Ah, 08h, 0Ah
+;	00h, 05h, 00h, 05h, 	3Fh, 4Fh, 3Fh, 4Fh, 	1Eh, 80h, 19h, 80h
+	smpsVcAlgorithm     04h
+	smpsVcFeedback      03h
+	smpsVcUnusedBits    00h
+	smpsVcDetune        03h, 03h, 07h, 07h
+	smpsVcCoarseFreq    02h, 03h, 02h, 03h
+	smpsVcRateScale     02h, 02h, 02h, 02h
+	smpsVcAttackRate    19h, 14h, 19h, 14h
+	smpsVcAmpMod        00h, 00h, 00h, 00h
+	smpsVcDecayRate1    0Ah, 08h, 0Ah, 08h
+	smpsVcDecayRate2    05h, 00h, 05h, 00h
+	smpsVcDecayLevel    04h, 03h, 04h, 03h
+	smpsVcReleaseRate   0Fh, 0Fh, 0Fh, 0Fh
+	smpsVcTotalLevel    80h, 19h, 80h, 1Eh
+
+;	Voice 13h - Wet Wood Bass
+;	31h
+;	33h, 01h, 00h, 00h, 	9Fh, 1Fh, 1Fh, 1Fh, 	0Dh, 0Ah, 0Ah, 0Ah
+;	0Ah, 07h, 07h, 07h, 	0FFh, 0AFh, 0AFh, 0AFh, 	1Eh, 1Eh, 1Eh, 80h
+	smpsVcAlgorithm     01h
+	smpsVcFeedback      06h
+	smpsVcUnusedBits    00h
+	smpsVcDetune        00h, 00h, 00h, 03h
+	smpsVcCoarseFreq    00h, 00h, 01h, 03h
+	smpsVcRateScale     00h, 00h, 00h, 02h
+	smpsVcAttackRate    1Fh, 1Fh, 1Fh, 1Fh
+	smpsVcAmpMod        00h, 00h, 00h, 00h
+	smpsVcDecayRate1    0Ah, 0Ah, 0Ah, 0Dh
+	smpsVcDecayRate2    07h, 07h, 07h, 0Ah
+	smpsVcDecayLevel    0Ah, 0Ah, 0Ah, 0Fh
+	smpsVcReleaseRate   0Fh, 0Fh, 0Fh, 0Fh
+	smpsVcTotalLevel    80h, 1Eh, 1Eh, 1Eh
+
+;	Voice 14h - Silent Bass
+;	3Ah
+;	70h, 76h, 30h, 71h, 	1Fh, 95h, 1Fh, 1Fh, 	0Eh, 0Fh, 05h, 0Ch
+;	07h, 06h, 06h, 07h, 	2Fh, 4Fh, 1Fh, 5Fh, 	21h, 12h, 28h, 80h
+	smpsVcAlgorithm     02h
+	smpsVcFeedback      07h
+	smpsVcUnusedBits    00h
+	smpsVcDetune        07h, 03h, 07h, 07h
+	smpsVcCoarseFreq    01h, 00h, 06h, 00h
+	smpsVcRateScale     00h, 00h, 02h, 00h
+	smpsVcAttackRate    1Fh, 1Fh, 15h, 1Fh
+	smpsVcAmpMod        00h, 00h, 00h, 00h
+	smpsVcDecayRate1    0Ch, 05h, 0Fh, 0Eh
+	smpsVcDecayRate2    07h, 06h, 06h, 07h
+	smpsVcDecayLevel    05h, 01h, 04h, 02h
+	smpsVcReleaseRate   0Fh, 0Fh, 0Fh, 0Fh
+	smpsVcTotalLevel    80h, 28h, 12h, 21h
+
+;	Voice 15h - Picked Bass
+;	28h
+;	71h, 00h, 30h, 01h, 	1Fh, 1Fh, 1Dh, 1Fh, 	13h, 13h, 06h, 05h
+;	03h, 03h, 02h, 05h, 	4Fh, 4Fh, 2Fh, 3Fh, 	0Eh, 14h, 1Eh, 80h
+	smpsVcAlgorithm     00h
+	smpsVcFeedback      05h
+	smpsVcUnusedBits    00h
+	smpsVcDetune        00h, 03h, 00h, 07h
+	smpsVcCoarseFreq    01h, 00h, 00h, 01h
+	smpsVcRateScale     00h, 00h, 00h, 00h
+	smpsVcAttackRate    1Fh, 1Dh, 1Fh, 1Fh
+	smpsVcAmpMod        00h, 00h, 00h, 00h
+	smpsVcDecayRate1    05h, 06h, 13h, 13h
+	smpsVcDecayRate2    05h, 02h, 03h, 03h
+	smpsVcDecayLevel    03h, 02h, 04h, 04h
+	smpsVcReleaseRate   0Fh, 0Fh, 0Fh, 0Fh
+	smpsVcTotalLevel    80h, 1Eh, 14h, 0Eh
+
+;	Voice 16h - Xylophone
+;	3Eh
+;	38h, 01h, 7Ah, 34h, 	59h, 0D9h, 5Fh, 9Ch, 	0Fh, 04h, 0Fh, 0Ah
+;	02h, 02h, 05h, 05h, 	0AFh, 0AFh, 66h, 66h, 	28h, 80h, 0A3h, 80h
+	smpsVcAlgorithm     06h
+	smpsVcFeedback      07h
+	smpsVcUnusedBits    00h
+	smpsVcDetune        03h, 07h, 00h, 03h
+	smpsVcCoarseFreq    04h, 0Ah, 01h, 08h
+	smpsVcRateScale     02h, 01h, 03h, 01h
+	smpsVcAttackRate    1Ch, 1Fh, 19h, 19h
+	smpsVcAmpMod        00h, 00h, 00h, 00h
+	smpsVcDecayRate1    0Ah, 0Fh, 04h, 0Fh
+	smpsVcDecayRate2    05h, 05h, 02h, 02h
+	smpsVcDecayLevel    06h, 06h, 0Ah, 0Ah
+	smpsVcReleaseRate   06h, 06h, 0Fh, 0Fh
+	smpsVcTotalLevel    80h, 0A3h, 80h, 28h
+
+;	Voice 17h - Sine Flute
+;	39h
+;	32h, 31h, 72h, 71h, 	1Fh, 1Fh, 1Fh, 1Fh, 	00h, 00h, 00h, 00h
+;	00h, 00h, 00h, 00h, 	0Fh, 0Fh, 0Fh, 0Fh, 	1Bh, 32h, 28h, 80h
+	smpsVcAlgorithm     01h
+	smpsVcFeedback      07h
+	smpsVcUnusedBits    00h
+	smpsVcDetune        07h, 07h, 03h, 03h
+	smpsVcCoarseFreq    01h, 02h, 01h, 02h
+	smpsVcRateScale     00h, 00h, 00h, 00h
+	smpsVcAttackRate    1Fh, 1Fh, 1Fh, 1Fh
+	smpsVcAmpMod        00h, 00h, 00h, 00h
+	smpsVcDecayRate1    00h, 00h, 00h, 00h
+	smpsVcDecayRate2    00h, 00h, 00h, 00h
+	smpsVcDecayLevel    00h, 00h, 00h, 00h
+	smpsVcReleaseRate   0Fh, 0Fh, 0Fh, 0Fh
+	smpsVcTotalLevel    80h, 28h, 32h, 1Bh
+
+;	Voice 18h - Pipe Organ
+;	07h
+;	34h, 74h, 32h, 71h, 	1Fh, 1Fh, 1Fh, 1Fh, 	0Ah, 0Ah, 05h, 03h
+;	00h, 00h, 00h, 00h, 	3Fh, 3Fh, 2Fh, 2Fh, 	8Ah, 8Ah, 80h, 80h
+	smpsVcAlgorithm     07h
+	smpsVcFeedback      00h
+	smpsVcUnusedBits    00h
+	smpsVcDetune        07h, 03h, 07h, 03h
+	smpsVcCoarseFreq    01h, 02h, 04h, 04h
+	smpsVcRateScale     00h, 00h, 00h, 00h
+	smpsVcAttackRate    1Fh, 1Fh, 1Fh, 1Fh
+	smpsVcAmpMod        00h, 00h, 00h, 00h
+	smpsVcDecayRate1    03h, 05h, 0Ah, 0Ah
+	smpsVcDecayRate2    00h, 00h, 00h, 00h
+	smpsVcDecayLevel    02h, 02h, 03h, 03h
+	smpsVcReleaseRate   0Fh, 0Fh, 0Fh, 0Fh
+	smpsVcTotalLevel    80h, 80h, 8Ah, 8Ah
+
+;	Voice 19h - Synth Brass 2
+;	3Ah
+;	31h, 37h, 31h, 31h, 	8Dh, 8Dh, 8Eh, 53h, 	0Eh, 0Eh, 0Eh, 03h
+;	00h, 00h, 00h, 00h, 	1Fh, 0FFh, 1Fh, 0Fh, 	17h, 28h, 26h, 80h
+	smpsVcAlgorithm     02h
+	smpsVcFeedback      07h
+	smpsVcUnusedBits    00h
+	smpsVcDetune        03h, 03h, 03h, 03h
+	smpsVcCoarseFreq    01h, 01h, 07h, 01h
+	smpsVcRateScale     01h, 02h, 02h, 02h
+	smpsVcAttackRate    13h, 0Eh, 0Dh, 0Dh
+	smpsVcAmpMod        00h, 00h, 00h, 00h
+	smpsVcDecayRate1    03h, 0Eh, 0Eh, 0Eh
+	smpsVcDecayRate2    00h, 00h, 00h, 00h
+	smpsVcDecayLevel    00h, 01h, 0Fh, 01h
+	smpsVcReleaseRate   0Fh, 0Fh, 0Fh, 0Fh
+	smpsVcTotalLevel    80h, 26h, 28h, 17h
+
+;	Voice 1Ah - Harpsichord
+;	3Bh
+;	3Ah, 31h, 71h, 74h, 	0DFh, 1Fh, 1Fh, 0DFh, 	00h, 0Ah, 0Ah, 05h
+;	00h, 05h, 05h, 03h, 	0Fh, 5Fh, 1Fh, 5Fh, 	32h, 1Eh, 0Fh, 80h
+	smpsVcAlgorithm     03h
+	smpsVcFeedback      07h
+	smpsVcUnusedBits    00h
+	smpsVcDetune        07h, 07h, 03h, 03h
+	smpsVcCoarseFreq    04h, 01h, 01h, 0Ah
+	smpsVcRateScale     03h, 00h, 00h, 03h
+	smpsVcAttackRate    1Fh, 1Fh, 1Fh, 1Fh
+	smpsVcAmpMod        00h, 00h, 00h, 00h
+	smpsVcDecayRate1    05h, 0Ah, 0Ah, 00h
+	smpsVcDecayRate2    03h, 05h, 05h, 00h
+	smpsVcDecayLevel    05h, 01h, 05h, 00h
+	smpsVcReleaseRate   0Fh, 0Fh, 0Fh, 0Fh
+	smpsVcTotalLevel    80h, 0Fh, 1Eh, 32h
+
+;	Voice 1Bh - Metallic Bass
+;	05h
+;	04h, 01h, 02h, 04h, 	8Dh, 1Fh, 15h, 52h, 	06h, 00h, 00h, 04h
+;	02h, 08h, 00h, 00h, 	1Fh, 0Fh, 0Fh, 2Fh, 	16h, 90h, 84h, 8Ch
+	smpsVcAlgorithm     05h
+	smpsVcFeedback      00h
+	smpsVcUnusedBits    00h
+	smpsVcDetune        00h, 00h, 00h, 00h
+	smpsVcCoarseFreq    04h, 02h, 01h, 04h
+	smpsVcRateScale     01h, 00h, 00h, 02h
+	smpsVcAttackRate    12h, 15h, 1Fh, 0Dh
+	smpsVcAmpMod        00h, 00h, 00h, 00h
+	smpsVcDecayRate1    04h, 00h, 00h, 06h
+	smpsVcDecayRate2    00h, 00h, 08h, 02h
+	smpsVcDecayLevel    02h, 00h, 00h, 01h
+	smpsVcReleaseRate   0Fh, 0Fh, 0Fh, 0Fh
+	smpsVcTotalLevel    8Ch, 84h, 90h, 16h
+
+;	Voice 1Ch - Alternate Metallic Bass
+;	2Ch
+;	71h, 74h, 32h, 32h, 	1Fh, 12h, 1Fh, 12h, 	00h, 0Ah, 00h, 0Ah
+;	00h, 00h, 00h, 00h, 	0Fh, 1Fh, 0Fh, 1Fh, 	16h, 80h, 17h, 80h
+	smpsVcAlgorithm     04h
+	smpsVcFeedback      05h
+	smpsVcUnusedBits    00h
+	smpsVcDetune        03h, 03h, 07h, 07h
+	smpsVcCoarseFreq    02h, 02h, 04h, 01h
+	smpsVcRateScale     00h, 00h, 00h, 00h
+	smpsVcAttackRate    12h, 1Fh, 12h, 1Fh
+	smpsVcAmpMod        00h, 00h, 00h, 00h
+	smpsVcDecayRate1    0Ah, 00h, 0Ah, 00h
+	smpsVcDecayRate2    00h, 00h, 00h, 00h
+	smpsVcDecayLevel    01h, 00h, 01h, 00h
+	smpsVcReleaseRate   0Fh, 0Fh, 0Fh, 0Fh
+	smpsVcTotalLevel    80h, 17h, 80h, 16h
+
+;	Voice 1Dh - Backdropped Metallic Bass
+;	3Ah
+;	01h, 07h, 01h, 01h, 	8Eh, 8Eh, 8Dh, 53h, 	0Eh, 0Eh, 0Eh, 03h
+;	00h, 00h, 00h, 07h, 	1Fh, 0FFh, 1Fh, 0Fh, 	18h, 28h, 27h, 8Fh
+	smpsVcAlgorithm     02h
+	smpsVcFeedback      07h
+	smpsVcUnusedBits    00h
+	smpsVcDetune        00h, 00h, 00h, 00h
+	smpsVcCoarseFreq    01h, 01h, 07h, 01h
+	smpsVcRateScale     01h, 02h, 02h, 02h
+	smpsVcAttackRate    13h, 0Dh, 0Eh, 0Eh
+	smpsVcAmpMod        00h, 00h, 00h, 00h
+	smpsVcDecayRate1    03h, 0Eh, 0Eh, 0Eh
+	smpsVcDecayRate2    07h, 00h, 00h, 00h
+	smpsVcDecayLevel    00h, 01h, 0Fh, 01h
+	smpsVcReleaseRate   0Fh, 0Fh, 0Fh, 0Fh
+	smpsVcTotalLevel    8Fh, 27h, 28h, 18h
+
+;	Voice 1Eh - Sine like Bell
+;	36h
+;	7Ah, 32h, 51h, 11h, 	1Fh, 1Fh, 59h, 1Ch, 	0Ah, 0Dh, 06h, 0Ah
+;	07h, 00h, 02h, 02h, 	0AFh, 5Fh, 5Fh, 5Fh, 	1Eh, 8Bh, 81h, 80h
+	smpsVcAlgorithm     06h
+	smpsVcFeedback      06h
+	smpsVcUnusedBits    00h
+	smpsVcDetune        01h, 05h, 03h, 07h
+	smpsVcCoarseFreq    01h, 01h, 02h, 0Ah
+	smpsVcRateScale     00h, 01h, 00h, 00h
+	smpsVcAttackRate    1Ch, 19h, 1Fh, 1Fh
+	smpsVcAmpMod        00h, 00h, 00h, 00h
+	smpsVcDecayRate1    0Ah, 06h, 0Dh, 0Ah
+	smpsVcDecayRate2    02h, 02h, 00h, 07h
+	smpsVcDecayLevel    05h, 05h, 05h, 0Ah
+	smpsVcReleaseRate   0Fh, 0Fh, 0Fh, 0Fh
+	smpsVcTotalLevel    80h, 81h, 8Bh, 1Eh
+
+;	Voice 1Fh - Synth like Metallic with Small Bell
+;	3Ch
+;	71h, 72h, 3Fh, 34h, 	8Dh, 52h, 9Fh, 1Fh, 	09h, 00h, 00h, 0Dh
+;	00h, 00h, 00h, 00h, 	23h, 08h, 02h, 0F7h, 	15h, 85h, 1Dh, 8Ah
+	smpsVcAlgorithm     04h
+	smpsVcFeedback      07h
+	smpsVcUnusedBits    00h
+	smpsVcDetune        03h, 03h, 07h, 07h
+	smpsVcCoarseFreq    04h, 0Fh, 02h, 01h
+	smpsVcRateScale     00h, 02h, 01h, 02h
+	smpsVcAttackRate    1Fh, 1Fh, 12h, 0Dh
+	smpsVcAmpMod        00h, 00h, 00h, 00h
+	smpsVcDecayRate1    0Dh, 00h, 00h, 09h
+	smpsVcDecayRate2    00h, 00h, 00h, 00h
+	smpsVcDecayLevel    0Fh, 00h, 00h, 02h
+	smpsVcReleaseRate   07h, 02h, 08h, 03h
+	smpsVcTotalLevel    8Ah, 1Dh, 85h, 15h
+
+;	Voice 20h - Nice Synth like lead
+;	3Eh
+;	77h, 71h, 32h, 31h, 	1Fh, 1Fh, 1Fh, 1Fh, 	0Dh, 06h, 00h, 00h
+;	08h, 06h, 00h, 00h, 	15h, 0Ah, 0Ah, 0Ah, 	1Bh, 8Fh, 8Fh, 8Fh
+	smpsVcAlgorithm     06h
+	smpsVcFeedback      07h
+	smpsVcUnusedBits    00h
+	smpsVcDetune        03h, 03h, 07h, 07h
+	smpsVcCoarseFreq    01h, 02h, 01h, 07h
+	smpsVcRateScale     00h, 00h, 00h, 00h
+	smpsVcAttackRate    1Fh, 1Fh, 1Fh, 1Fh
+	smpsVcAmpMod        00h, 00h, 00h, 00h
+	smpsVcDecayRate1    00h, 00h, 06h, 0Dh
+	smpsVcDecayRate2    00h, 00h, 06h, 08h
+	smpsVcDecayLevel    00h, 00h, 00h, 01h
+	smpsVcReleaseRate   0Ah, 0Ah, 0Ah, 05h
+	smpsVcTotalLevel    8Fh, 8Fh, 8Fh, 1Bh
+
+;	Voice 21h - Rock Organ
+;	07h
+;	34h, 74h, 32h, 71h, 	1Fh, 1Fh, 1Fh, 1Fh, 	0Ah, 0Ah, 05h, 03h
+;	00h, 00h, 00h, 00h, 	3Fh, 3Fh, 2Fh, 2Fh, 	8Ah, 8Ah, 8Ah, 8Ah
+	smpsVcAlgorithm     07h
+	smpsVcFeedback      00h
+	smpsVcUnusedBits    00h
+	smpsVcDetune        07h, 03h, 07h, 03h
+	smpsVcCoarseFreq    01h, 02h, 04h, 04h
+	smpsVcRateScale     00h, 00h, 00h, 00h
+	smpsVcAttackRate    1Fh, 1Fh, 1Fh, 1Fh
+	smpsVcAmpMod        00h, 00h, 00h, 00h
+	smpsVcDecayRate1    03h, 05h, 0Ah, 0Ah
+	smpsVcDecayRate2    00h, 00h, 00h, 00h
+	smpsVcDecayLevel    02h, 02h, 03h, 03h
+	smpsVcReleaseRate   0Fh, 0Fh, 0Fh, 0Fh
+	smpsVcTotalLevel    8Ah, 8Ah, 8Ah, 8Ah
+
+;	Voice 22h - Strike like Slap Bass
+;	20h
+;	36h, 35h, 30h, 31h, 	0DFh, 0DFh, 9Fh, 9Fh, 	07h, 06h, 09h, 06h
+;	07h, 06h, 06h, 08h, 	20h, 10h, 10h, 0F8h, 	19h, 37h, 13h, 80h
+	smpsVcAlgorithm     00h
+	smpsVcFeedback      04h
+	smpsVcUnusedBits    00h
+	smpsVcDetune        03h, 03h, 03h, 03h
+	smpsVcCoarseFreq    01h, 00h, 05h, 06h
+	smpsVcRateScale     02h, 02h, 03h, 03h
+	smpsVcAttackRate    1Fh, 1Fh, 1Fh, 1Fh
+	smpsVcAmpMod        00h, 00h, 00h, 00h
+	smpsVcDecayRate1    06h, 09h, 06h, 07h
+	smpsVcDecayRate2    08h, 06h, 06h, 07h
+	smpsVcDecayLevel    0Fh, 01h, 01h, 02h
+	smpsVcReleaseRate   08h, 00h, 00h, 00h
+	smpsVcTotalLevel    80h, 13h, 37h, 19h
 
 	if $ > zDataStart
 		fatal "Your Z80 tables won't fit before its variables. It's \{$-zDataStart}h bytes past the start of the variables, at \{zDataStart}h"
